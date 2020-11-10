@@ -126,6 +126,13 @@
 }
 
 - (void)closeTimer {
+    int offset = SCROLL_OFFSET_X;
+    int width = _viewWidth;
+    int a = offset % width;
+    if (a != 0) {
+        int b = offset / width;
+        [_scrollView setContentOffset:CGPointMake(width*(b+1), 0) animated:NO];
+    }
     [self.moveTimer invalidate];
     self.moveTimer = nil;
 }
